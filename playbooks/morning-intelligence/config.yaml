@@ -1,0 +1,41 @@
+name: "Morning Intelligence"
+version: "1.0.0"
+entity: ["shards_inc", "shards_labs", "shards_foundation"]
+schedule: "0 6 * * *"
+timeout: 300  # 5 minutes
+
+data_sources:
+  polygon:
+    enabled: true
+    symbols:
+      - "SPY"
+      - "QQQ"
+      - "BTC-USD"
+      - "ETH-USD"
+  
+  news:
+    enabled: true
+    feeds:
+      - "https://feeds.bloomberg.com/markets/news.rss"
+      - "https://techcrunch.com/feed/"
+      - "https://www.reuters.com/rssFeed/technologyNews"
+  
+  competitors:
+    enabled: true
+    urls:
+      - "https://example-competitor.com"
+
+notifications:
+  email:
+    enabled: true
+    recipients:
+      - "team@shards.inc"
+  
+  slack:
+    enabled: false
+    channel: "#daily-intelligence"
+
+metrics:
+  delivery_time_target: 300  # seconds
+  data_source_coverage_target: 50
+  accuracy_target: 0.95
